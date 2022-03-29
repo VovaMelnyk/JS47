@@ -8,7 +8,7 @@
 // визначає тип порівгня
 // a - тип number
 // b - тип string
-// конвертує змінну b в число 
+// конвертує змінну b в число
 // і порівнює змінні a і b
 // console.log(a === b); // false
 
@@ -23,6 +23,9 @@
 // ""
 //-0
 
+// const valueB = "Strrng";
+// console.log(Number(valueB)); // NaN
+// console.log(typeof NaN); // number
 
 // # Модуль 1. Занятие 1. Переменные, типы и операторы
 
@@ -33,10 +36,10 @@
 // ```js
 // const apples = 47;
 // const grapes = 135;
-// const total = ;
-// console.log(total)
-// const diff = ;
-// console.log(diff)
+// const total = apples + grapes;
+// console.log("сума", total);
+// const diff = apples - grapes;
+// console.log("різниця", diff);
 // ```
 
 // ## Example 2 - Комбинированные операторы
@@ -45,8 +48,13 @@
 
 // ```js
 // let students = 100;
-// students = students + 50;
+// // students = students + 50;
+// students += 50;
 // console.log(students);
+// 1) в students записано 100
+// 2) до цифри 100 додаємо 50
+// 3) в students записано 150
+// Copilot
 // ```
 
 // ## Example 3 - Приоритет операторов
@@ -55,7 +63,7 @@
 // `result`.
 
 // ```js
-// const result = 108 + 223 - 2 * 5;
+// const result = (108 + 223) - 2 * 5;
 // console.log(result);
 // ```
 
@@ -66,7 +74,11 @@
 // `Math.round()`. Проверь что будет в консоли при значениях `27.3` и `27.9`.
 
 // ```js
-// const value = 27.5;
+// const value = 27.7;
+// console.log(Math.floor(value)); // 27
+// console.log(Math.ceil(value)); // 28
+// console.log(Math.round(value)); // 28
+
 // ```
 
 // ## Example 5 - Шаблонные строки
@@ -75,12 +87,12 @@
 // переменные вставленные в строку.
 
 // ```js
-// const companyName = 'Cyberdyne Systems';
+// const companyName = "Cyberdyne Systems";
 // const repairBots = 150;
 // const defenceBots = 50;
-// const message = ``;
+// const message = `${companyName} has ${repairBots + defenceBots} bots in stock`;
 // console.log(message); // "Cyberdyne Systems has 200 bots in stock"
-// ```
+// // ```
 
 // ## Example 6 - Методы строк и чейнинг
 
@@ -95,11 +107,39 @@
 // Индекс массиы тела необходимо округлить до одной цифры после запятой;
 
 // ```js
-// let weight = '88,3';
-// let height = '1.75';
+let weight = "88,3"; // 8 => 0 // 8 => 1 // ,=> 2 // 3 => 3
+let height = "1.75";
 
-// const bmi = ;
+// let convertedWeight = parseFloat(weight);
+// let convertedHeight = parseFloat(height);
+
+// console.log(convertedWeight);
+// console.log(convertedHeight);
+
+// const bmi = convertedWeight / Math.pow(convertedHeight, 2);
 // console.log(bmi); // 28.8
+
+// 1) потрібно знайти порядковий номер коми в рядочкус (indexOf)
+// 2) відділити число від коми (slice)
+// 3) отримати значення після коми (slice)
+// 4) потрібно зробити парвильне дробове значення (template string)
+// 5) можемо користуватися результатом
+
+// const index = weight.indexOf(",");
+// const weightWithoutComma = weight.slice(0, index);
+// const weightAfterComma = weight.slice(index + 1); // 2 + 1
+// const newWeight = `${weightWithoutComma}.${weightAfterComma}`;
+// console.log(newWeight);
+// const bmi = newWeight / Math.pow(height, 2);
+
+// console.log(bmi);
+
+// let convertWeight = Number(weight);
+// let convertHeight = Number(height);
+
+// console.log(convertWeight);
+// console.log(convertHeight);
+
 // ```
 
 // ## Example 7 - Операторы сравнения и приведение типов
@@ -110,8 +150,24 @@
 // console.log(5 > 4);
 
 // console.log(10 >= '7');
+// 1) конвертує в число строку "7"
+// 1.1) Number("7") => 7
+// 2) порівнює числа між собою
 
-// console.log('2' > '12');
+// console.log("2" > "12");
+
+// const a = "1";
+// const b = 2;
+
+// console.log("Bob" > "Alice");
+// console.log('B' > 'A');
+// console.log("A" > "B");
+
+
+// "Bob".charCodeAt(1); // 50
+// "Blice".charCodeAt(1); // 49
+
+// console.log(50 > 49);
 
 // console.log('2' < '12');
 
@@ -121,11 +177,11 @@
 
 // console.log('false' === false);
 
-// console.log(1 == true);
+// console.log(1 == true); // 1 == 1
 
 // console.log(1 === true);
 
-// console.log('0' == false);
+// console.log('0' == false); // 0 == 0
 
 // console.log('0' === false);
 
