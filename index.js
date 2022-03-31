@@ -163,9 +163,27 @@ let height = "1.75";
 // console.log('B' > 'A');
 // console.log("A" > "B");
 
-
 // "Bob".charCodeAt(1); // 50
 // "Blice".charCodeAt(1); // 49
+
+// console.log(0 || "Mango"); // false || true
+// console.log(0 && "Mango"); // false && true
+
+// console.log(null || "false" || "mango");
+// console.log(null && "false" && "mango");
+// console.log(("mango" && null) || false); // null || false
+// console.log(("false" && "Mango") || null); // "Mango" || null
+// let i = 0;
+// i += 1;
+// i++;
+
+// i++; // 0
+// console.log(i); //postfix // 1
+// ++i; // prefix // 1
+
+// for (let i = 0; i < 10; i += 1) {
+//   console.log(i);
+// }
 
 // console.log(50 > 49);
 
@@ -215,11 +233,10 @@ let height = "1.75";
 
 // console.log(null || 2 || undefined);
 
-// console.log((1 && null && 2) > 0);
+// console.log((1 && null && 2) > 0); // null > 0 // false
 
-// console.log(null || (2 && 3) || 4);
+// console.log(null || (2 && 3) || 4);// null || 3 || 4// 3
 // ```
-
 
 // ## Example 10 - Опертор % и методы строк
 
@@ -252,6 +269,18 @@ let height = "1.75";
 // `ECMAScript`, то показывай alert со строкой `"Верно!"`, в противном случае -
 // `"Не знаете? ECMAScript!"`
 
+// 1) Запитати в користувача дані
+// 2) Зробити перевірку на відповідь
+
+// const answer = prompt("Какое официальное название JavaScript?").toLowerCase();
+// const rightAnswer = "ecmascript";
+
+// if (answer === rightAnswer) {
+//   alert("Верно!");
+// } else {
+//   alert(`Не знаете? ${rightAnswer}!`);
+// }
+
 // ## Example 2 - Отображение времени (if...else)
 
 // Напиши скрипт для отображения часов и минут в консоли браузера в виде строки
@@ -260,15 +289,16 @@ let height = "1.75";
 
 // ```js
 // const hours = 14;
-// const minutes = 26;
-// let timestring;
+// const minutes = 0;
+// let timeString;
 
-// if (minutes > 0) {
-//   timestring = `${hours} ч. ${minutes} мин.`;
+// if (minutes === 0) {
+//   timeString = `${hours} год.`;
 // } else {
-//   timestring = `${hours} ч.`;
+//   timeString = `${hours} год. ${minutes} хв.`;
 // }
-// console.log(timestring);
+
+// console.log(timeString);
 // ```
 
 // ## Example 3 - Ветвеления
@@ -279,8 +309,27 @@ let height = "1.75";
 // должна быть строка `"Это отрицательное число"`.
 
 // ```js
-// const userInput = prompt('Введите число');
+// const userInput = prompt("Введите число"); // null
 // ```
+
+// if (userInput === 0) {
+//   console.log("Это ноль");
+// } else if (userInput > 0) {
+//   console.log("Это положительное число");
+// } else {
+//   console.log("Это отрицательное число");
+// }
+// if (userInput === null) {
+//   console.log("Вы ничего не ввели");
+// } else if (Number(userInput) === 0) { // '0' === 0
+//   console.log("Это ноль");
+// } else if (userInput > 0) {
+//   console.log("Это положительное число");
+// } else if (userInput < 0) {
+//   console.log("Это отрицательное число");
+// } else {
+//   console.log("Введите число");
+// }
 
 // ## Example 4 - Вложенные ветвления
 
@@ -290,9 +339,25 @@ let height = "1.75";
 
 // ```js
 // const a = 120;
-// const b = 180;
+// const b = 18;
 // ```
 
+// if (a > 100 && b > 100) {
+//   console.log(Math.max(a, b));
+// } else {
+//   console.log(b + 512);
+// }
+
+// if (a > 100 && b > 100) {
+//   if (a > b) {
+//     // 120 > 180
+//     console.log(a);
+//   } else {
+//     console.log(b); // 180
+//   }
+// } else {
+//   console.log(b + 512);
+// }
 
 // ## Example 8 - if...else и логические операторы
 
@@ -352,6 +417,29 @@ let height = "1.75";
 // const min = 20;
 // ```
 
+// for (let i = min; i <= max; i += 5) {
+//   console.log(i);
+// }
+
+// for (let i = min; i <= max; i += 1) {
+//   if (i % 5 === 0) {
+//     console.log(i);
+//   }
+// }
+
+// for (let i = min; i <= max; i += 1) {
+//   if (i % 5 !== 0) {
+//     continue;
+//   }
+//   console.log(i);
+// }
+// let total = 0;
+// for (let i = 0; i <= 1000; i += 1) {
+//   if (i % 3 === 0 || i % 5 === 0) {
+//     total += i;
+//   }
+// }
+// console.log(total);
 // ## Example 12 - Ввод пользователя и ветвления
 
 // Напиши скрипт, который будет спрашивать логин с помощью `prompt` и логировать
@@ -366,3 +454,33 @@ let height = "1.75";
 // - Если введён пароль `"Я админ"`, то вывести строку `"Здравствуйте!"`
 // - Иначе выводить строку `"Неверный пароль"`
 
+// const login = prompt("Enter login").toLowerCase();
+
+// if (
+//   login === "адмін" ||
+//   login === "admin" ||
+//   login === "адміністратор" ||
+//   login === "administrator"
+// ) {
+//   const password = prompt("Enter password").toLowerCase();
+//   if (password === "я адмін") {
+//     console.log("Вітаю");
+//   } else {
+//     console.log("Невірний пароль");
+//   }
+// } else {
+//   console.log("Відміна");
+// }
+
+const age = prompt("Enter your age");
+// let message = ''
+
+// if (age >= 21) {
+//   message = "Wellcome";
+// } else {
+//   message = "You are not allowed";
+// }
+
+const message = age >= 21 ? "Wellcome" : "You are not allowed";
+
+console.log(message);
