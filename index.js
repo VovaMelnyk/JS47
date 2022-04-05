@@ -1,3 +1,11 @@
+// const a = [1, 2, 3]; // array link#1
+// // const result = a.push(4, 5, 6, 7); // array link#2
+// const result = a.pop();
+// console.log(result); // 7
+// const b = [1, 2, 3];// array link#2
+
+// console.log(a === b); // false
+
 // # Модуль 2. Занятие 3. Массивы
 
 // ## Example 1 - Базовые операции с массивом
@@ -11,7 +19,13 @@
 // 6. Вставьте «Country» и «Reggy» в начало массива.
 
 // ```js
-// const genres = ;
+// const genres = ["Jazz", "Blues"];
+// genres.push("Рок-н-ролл");
+// console.log(genres[0]);
+// console.log(genres[genres.length - 1]); // length = 10 lastIndex = 9
+// console.log(genres.shift());
+// console.log(genres.unshift("Country", "Reggy"));
+// console.log(genres);
 // ```
 
 // ## Example 2 - Массивы и строки
@@ -21,7 +35,18 @@
 // разделены пробелом.
 
 // ```js
-// const values = '8 11';
+// const values = "10 10";
+// const numbers = values.split(" ");
+// // const result = numbers[0] * numbers[1];
+// const result = Number(numbers[0]) + Number(numbers[1]);
+
+// console.log(result);
+
+// const a = 5;
+// const b = "10";
+
+// console.log(a);
+// console.log(b);
 // ```
 
 // ## Example 3 - Перебор массива
@@ -31,8 +56,19 @@
 // Нумерация элементов должна начинаться с `1`.
 
 // ```js
-// const fruits = ['🍎', '🍇', '🍑', '🍌', '🍋'];
+// const fruits = ["🍎", "🍇", "🍑", "🍌", "🍋"];
 // ```
+
+// for (let i = 0; i < fruits.length; i += 1) {
+//   const index = i + 1;
+//   const element = fruits[i];
+//   console.log(`${index}: ${element}`);
+// }
+
+// for (let element of fruits) {
+//   const index = fruits.indexOf(element) + 1;
+//   console.log(`${index}: ${element}`);
+// }
 
 // ## Example 4 - Массивы и циклы
 
@@ -41,10 +77,59 @@
 // разделенные запятыми. Порядковый номер имен и телефонов в строках указывают на
 // соответствие. Количество имен и телефонов гарантированно одинаковое.
 
+// Опрацювати варіант коли довжина строк різна
+
 // ```js
-// const names = 'Jacob,William,Solomon,Artemis';
-// const phones = '89001234567,89001112233,890055566377,890055566300';
+// const names = "Jacob,William,Solomon,Artemis";
+// const names = "Jacob,William,Solomon";
+
+// const phones = "89001234567,89001112233,890055566377,890055566300";
+
+// const names = "Jacob,William,Solomon,Artemis";
+
+// const phones = "89001234567,89001112233,890055566377";
 // ```
+
+// const namesArray = names.split(",");
+// const phonesArray = phones.split(",");
+
+// console.log(namesArray);
+// console.log(phonesArray);
+
+// // let longestArray = [];
+
+// // if (namesArray.length > phonesArray.length) {
+// //   longestArray = namesArray;
+// // } else {
+// //   longestArray = phonesArray;
+// // }
+
+// const longestArray = namesArray.length > phonesArray.length ? namesArray : phonesArray;
+
+// for (let i = 0; i < longestArray.length; i += 1) {
+//   const name = namesArray[i] === undefined ? "empty" : namesArray[i];
+//   // iteration #1
+//   // i = 0
+//   // const name = namesArray[0]
+//   // const name = 'Jacob' === undefined // false
+//   // const name = namesArray[0] // Jacob;
+
+//   // Iteration #4
+//   // i = 3
+//   // const name = namesArray[3]
+//   // const name = undefined === undefined // true
+//   //   const name = 'empty'
+//   const phone = phonesArray[i] === undefined ? "empty" : phonesArray[i];
+//   console.log(`${name} - ${phone}`);
+// }
+
+// for (let i = 0; i < longestArray.length; i += 1) {
+//   console.log(
+//     `${namesArray[i] === undefined ? "empty" : namesArray[i]} - ${
+//       phonesArray[i] === undefined ? "empty" : phonesArray[i]
+//     }`
+//   );
+// }
 
 // ## Example 5 - Массивы и строки
 
@@ -53,7 +138,27 @@
 // пробельным символом. Скрипт должен работать для любой строки.
 
 // ```js
-// const string = 'Welcome to the future';
+// const string = "Welcome to the future";
+// const array = string.split(" ");
+
+// shift, pop
+// const copyArray = array.slice();
+// copyArray.pop();
+// copyArray.shift();
+// const result = copyArray.join(" ");
+// console.log("original", array);
+// console.log("copy", copyArray);
+// console.log(result);
+
+//splice
+// const copyArray = array.slice();
+// const copyArray = [].concat(array);
+// copyArray.splice(0, 1);
+// copyArray.splice(copyArray.length - 1, 1);
+// const result = copyArray.join(" ");
+// console.log("original", array);
+// console.log("copy", copyArray);
+// console.log(result);
 // ```
 
 // ## Example 6 - Массивы и строки
