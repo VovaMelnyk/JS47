@@ -193,7 +193,69 @@
 // //////////////////////////
 // // Lesson 4
 
+// function calculate(a, b) {
+//   function add(a, b) {
+//     console.log(a + b);
+//     return a + b;
+//   }
+
+//   add(a, b);
+// }
+
+// function sayHello(name) {
+//   console.log(`Hello ${name}`);
+// }
+
+// calculate(10, 15);
+
+// sayHello("John");
+
+// function add() {
+//   console.log(arguments);
+//   const args = Array.from(arguments);
+//   console.log(args);
+//   const numbers = [];
+//   const strings = [];
+//   for (let arg of args) {
+//     if (typeof arg === "number") {
+//       numbers.push(arg);
+//     }
+
+//     if (typeof arg === "string") {
+//       strings.push(arg);
+//     }
+//   }
+//   console.log(numbers);
+//   console.log(strings);
+// }
+
+// add("2", "3", "4", 4, 5);
+// add("2", "3", 4, 4, 5);
+// add(2, 5);
+
+// const number1 = prompt("Enter number 1");
+// const number2 = prompt("Enter number 2");
+
+// function add(a, b) {
+//   if (isNaN(a) || isNaN(b)) {
+//     return;
+//   }
+//   return a * b;
+// }
+// console.log(add(number1, number2));
+
 // # Модуль 2. Занятие 4. Функции
+// sayHello();
+
+// const sayHi = function () {
+//   console.log("Hello");
+// };
+
+// function sayHello() {
+//   console.log("Hello");
+// }
+// sayHello();
+// sayHi();
 
 // ## Example 2 - Меньшее из чисел
 
@@ -203,7 +265,37 @@
 // console.log(min(2, 5)); // 2
 // console.log(min(3, -1)); // -1
 // console.log(min(1, 1)); // 1
+// console.log(min(1, 1, 0)); // 0
+// console.log(min(54, 37, 20));
+
 // ```
+
+// function min(a, b) {
+//   if (a < b) {
+//     return a;
+//   }
+//   return b;
+// }
+
+// [1, 2, 0];
+// min = 54
+// 54 < 54 // false
+// min = 54
+// 37 < 54 // true
+// min = 54 => 37
+// 20 < 37 // true
+// min = 37 => 20
+
+// function min() {
+//   const args = Array.from(arguments);
+//   let min = args[0];
+//   for (let number of args) {
+//     if (number < min) {
+//       min = number; //
+//     }
+//   }
+//   return min;
+// }
 
 // ## Example 3 - Площадь прямоугольника
 
@@ -212,9 +304,29 @@
 // строки. Значения гарантированно разделены пробелом.
 
 // ```js
-// function getRectArea(dimensions) {}
+// function getRectArea(dimensions) {
+//   const numbers = dimensions.split(" ");
+//   return numbers[0] * numbers[1];
+// }
 
-// console.log(getRectArea('8 11'));
+// function getRectArea(width, height) {
+//   if (isNaN(width) || isNaN(height)) {
+//     alert("Введите корректные значения");
+//     return;
+//   }
+
+//   if (width === null || height === null) {
+//     alert("Ви не завершили оперція вводу");
+//     return;
+//   }
+//   return width * height;
+// }
+
+// const width = prompt("Enter width");
+// const height = prompt("Enter height");
+
+// console.log(getRectArea(width, height));
+
 // ```
 
 // ## Example 4 - Логирование элементов
@@ -234,7 +346,6 @@
 // logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
 // ```
 
-
 // ## Example 6 - Поиск наибольшего элемента
 
 // Напиши функцию `findLargestNumber(numbers)`которая ищет самое большое число в
@@ -253,12 +364,29 @@
 // и возвращает их среднее значение. Все аругменты будут только числами.
 
 // ```js
-// function calAverage() {}
+// function calAverage() {
+//   const args = Array.from(arguments);
+//   const numbersCount = args.length;
+//   let sum = 0;
+//   for (let number of args) {
+//     sum += number;
+//   }
+
+//   return sum / numbersCount;
+// }
 
 // console.log(calAverage(1, 2, 3, 4)); // 2.5
 // console.log(calAverage(14, 8, 2)); // 8
 // console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
 // ```
+
+// const words = ["World", "Hello", "Apple", "Orange", "Banana"];
+
+//chartAt
+// 1 з 2  3 4 5
+// 2 з 3 4 5
+// 3 з 4 5
+// 4 з 5
 
 // ## Example 8 - Форматирование времени
 
@@ -266,20 +394,23 @@
 // (количество минут) в строку в формате часов и минут `HH:MM`.
 
 // ```js
-// const hours = Math.floor(totalMinutes / 60);
-// const minutes = totalMinutes % 60;
-// console.log(hours);
-// console.log(minutes);
 
 // const doubleDigitHours = String(hours).padStart(2, 0);
 // const doubleDigitMinutes = String(minutes).padStart(2, 0);
 // console.log(`${doubleDigitHours}:${doubleDigitMinutes}`);
 
-// function formatTime(minutes) {}
+// function formatTime(minutes) {
+//   const hours = Math.floor(minutes / 60); // 1 год // 1.8666 //2
+//   const minutesLeft = minutes % 60; // 1 месяц
+//   const convertedHours = hours < 10 ? `0${hours}` : hours;
+//   const convertedMinutes = minutesLeft < 10 ? `0${minutesLeft}` : minutesLeft;
+//   return `${convertedHours}:${convertedMinutes}`;
+// }
 
 // console.log(formatTime(70)); // "01:10"
 // console.log(formatTime(450)); // "07:30"
 // console.log(formatTime(1441)); // "24:01"
+// console.log(formatTime(50)); // "00:50"
 // ```
 
 // ## Example 9 - Коллекция курсов (includes, indexOf, push и т. д.)
@@ -305,3 +436,7 @@
 // console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
 // ```
 
+// / const hours = Math.floor(totalMinutes / 60);
+// const minutes = totalMinutes % 60;
+// console.log(hours);
+// console.log(minutes);
