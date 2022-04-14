@@ -296,7 +296,108 @@
 
 /////////////////////////////////
 
+// const user = {
+//   name: "Bob",
+//   age: 12,
+// };
+
+// const userName = user.name;
+// const userAge = user.age;
+
+// let { name, age } = user;
+
+// let playlist = {
+//   nameList: "My List",
+//   tracks: ["name1", " name2", "name3"],
+// };
+// let { nameList, tracks } = playlist;
+// tracks.push("name5");
+
+// // const copyTracks = [...tracks]
+
+// console.log(tracks);
+// console.log(playlist.tracks);
+
+// // let nameList = playlist.nameList;
+// // nameList = "qqqq";
+
+// nameList = "Best list";
+// console.log(nameList); // -> Best list
+
+// // но вто же время:
+// console.log(playlist); //-> My List
+
+// const first = { propA: 5, propB: 10, propC: 50 };
+// const second = { propC: 15, propD: 20 };
+
+// const fourth = { ...second, ...first };
+// console.log(fourth); // { propA: 5, propB: 10, propC: 50, propD: 20 }
+
+// ЧОМУ в четвертому обєкті порядок властивостей саме такий?,
+// а не:
+// console.log(fourth);
+
+// console.log([1, 2, 3]); // {  propC: 50,  propD: 20, propA: 5, propB: 10 }
+
+// const name = user.name
+// const age = user.age
+
+// function foo({ username = "User" } = {}) {
+//   // undefined
+//   console.log(username);
+// }
+
+// function foo(obj) {
+//   const { username } = obj;
+//   console.log(username);
+// }
+
+// const user = { username: "Bob" };
+
+// foo(user);
+// foo(); // {} => undefined
 // # Модуль 3 Занятие 6. Деструктуризация и rest/spread
+
+// const arr = [
+//   { name: "Bob", age: 13 }, // link #1
+//   { name: "John", age: 43 },
+// ];
+
+// function test(obj) {
+//   for (let el of arr) {
+//     console.log(obj === el); // link 1 === link 2
+//   }
+// }
+
+// const numbers = [1, 2, 3, 4, 5];
+// const numbers2 = [1, 2, 3, 4, 5];
+
+// function compareArr(arr1, arr2) {
+//   if (arr1.length !== arr2.length) {
+//     return false;
+//   }
+
+//   for (let el of arr1) {
+//     // el = 1 з масиву numbers
+//     const index = arr1.indexOf(el); // 0
+//     if (el !== arr2[index]) {
+//       // 1 з масиву numbers !== numbers2[0] => 1 !== 1
+//       return false;
+//     }
+//   }
+
+//   return true;
+// }
+
+// console.log(compareArr(numbers, numbers2));
+
+// function test(...args) {
+//   console.log(args);
+// }
+
+// test({ name: "Bob" }, [1, 2, 3, 4, 5]);
+
+// test({ name: "Bob", age: 13 }); // link #2
 
 // ## Example 1 - Деструктуризация
 
@@ -304,9 +405,16 @@
 // независимых аргументов.
 
 // ```js
-// function calcBMI(weight, height) {
-//   const numericWeight = Number(weight.replace(',', '.'));
-//   const numericHeight = Number(height.replace(',', '.'));
+// function calcBMI(props) {
+//   const { weight, height } = props;
+//   const numericWeight = Number(weight.replace(",", "."));
+//   const numericHeight = Number(height.replace(",", "."));
+//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
+// }
+
+// function calcBMI({ weight, height }) {
+//   const numericWeight = Number(weight.replace(",", "."));
+//   const numericHeight = Number(height.replace(",", "."));
 //   return Number((numericWeight / numericHeight ** 2).toFixed(1));
 // }
 
@@ -318,9 +426,9 @@
 // // Ожидается
 // console.log(
 //   calcBMI({
-//     weight: '88,3',
-//     height: '1.75',
-//   }),
+//     weight: "88,3",
+//     height: "1.75",
+//   })
 // );
 // console.log(
 //   calcBMI({
@@ -342,24 +450,42 @@
 // независимых аргументов.
 
 // ```js
+
 // function printContactsInfo(names, phones) {
-//   const nameList = names.split(',');
-//   const phoneList = phones.split(',');
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
 //   for (let i = 0; i < nameList.length; i += 1) {
 //     console.log(`${nameList[i]}: ${phoneList[i]}`);
 //   }
 // }
 
-// // Было
-// // printContactsInfo(
-// //   'Jacob,William,Solomon,Artemis',
-// //   '89001234567,89001112233,890055566377,890055566300',
-// // );
+// function printContactsInfo({ names, phones }) {
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+//   }
+// }
 
-// // Ожидается
+// function printContactsInfo(params) {
+//   const { names, phones } = params;
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+//   }
+// }
+
+// // // Было
+// printContactsInfo(
+//   "Jacob,William,Solomon,Artemis",
+//   "89001234567,89001112233,890055566377,890055566300"
+// );
+
+// // // Ожидается
 // printContactsInfo({
-//   names: 'Jacob,William,Solomon,Artemis',
-//   phones: '89001234567,89001112233,890055566377,890055566300',
+//   names: "Jacob,William,Solomon,Artemis",
+//   phones: "89001234567,89001112233,890055566377,890055566300",
 // });
 // ```
 
@@ -373,18 +499,45 @@
 //   return `${companyName} has ${repairBots + defenceBots} bots in stock`;
 // }
 
-// // Было
+// function getBotReport(params) {
+//   const {
+//     companyName,
+//     bots: { repair, defence },
+//   } = params;
+//   return `${companyName} has ${repair + defence} bots in stock`;
+// }
+
+// function getBotReport({ companyName, bots: { repair, defence } }) {
+//   return `${companyName} has ${repair + defence} bots in stock`;
+// }
+
+// function getBotReport({ companyName, bots }) {
+//   return `${companyName} has ${bots.repair.old + bots.repair.new +  bots.defence} bots in stock`;
+// }
+
+// function getBotReport({ companyName, bots }) {
+//   const { repair, defence } = bots;
+//   const { newBots, oldBots } = repair;
+//   console.log(bots);
+//   return `${companyName}has ${repair + defence} bots in stock`;
+// }
+
+// // // Было
 // // console.log(getBotReport('Cyberdyne Systems', 150, 50));
 
-// // Ожидается
+// // // Ожидается
 // console.log(
 //   getBotReport({
-//     companyName: 'Cyberdyne Systems',
+//     companyName: "Cyberdyne Systems",
 //     bots: {
-//       repair: 150,
+//       repair: {
+//         newBots: 12,
+//         oldBots: 35,
+//       },
 //       defence: 50,
 //     },
-//   }),
+//   })
+// );
 // ); // "Cyberdyne Systems has 200 bots in stock"
 // ```
 
@@ -395,14 +548,6 @@
 // компании.
 
 // ```js
-// // Решение
-// function getStockReport({ companyName, stock }) {
-//   let total = 0;
-//   for (const value of Object.values(stock)) {
-//     total += value;
-//   }
-//   return `${companyName} has ${total} items in stock`;
-// }
 
 // console.log(
 //   getStockReport({
@@ -434,31 +579,61 @@
 
 // ```js
 // // Решение
-// function createContact(partialContact) {
+
+// function createContact(userInfo) {
+//   const { list = "default" } = userInfo;
 //   return {
-//     list: 'default',
-//     ...partialContact,
+//     ...userInfo,
 //     id: generateId(),
-//     createdAt: Date.now(),
+//     createdAt: "14.04.22",
+//     list,
+//   };
+// }
+
+// function createContact(userInfo) {
+//   return {
+//     list: "default",
+//     ...userInfo,
+//     id: generateId(),
+//     createdAt: "14.04.22",
+//   };
+// }
+
+// function createContact(userInfo) {
+//   const list = userInfo.list ?? "default";
+
+//   // let list;
+
+//   // if (userInfo.list === undefined) {
+//   //   list = "default";
+//   // } else {
+//   //   list = userInfo.list;
+//   // }
+
+//   return {
+//     ...userInfo,
+//     id: generateId(),
+//     createdAt: "14.04.22",
+//     list,
 //   };
 // }
 
 // console.log(
 //   createContact({
-//     name: 'Mango',
-//     email: 'mango@mail.com',
-//     list: 'friends',
-//   }),
+//     name: "Mango",
+//     email: "mango@mail.com",
+//     list: "friends",
+//   })
 // );
 // console.log(
 //   createContact({
-//     name: 'Poly',
-//     email: 'poly@hotmail.com',
-//   }),
+//     name: "Poly",
+//     email: "poly@hotmail.com",
+//   })
 // );
 
 // function generateId() {
-//   return '_' + Math.random().toString(36).substr(2, 9);
+//   return "_" + Math.random().toString(36).substr(2, 9);
 // }
 // ```
 
@@ -477,13 +652,13 @@
 // }
 
 // console.log(
-//   transformId({
+//   transformUsername({
 //     id: 1,
-//     firstName: 'Jacob',
-//     lastName: 'Mercer',
-//     email: 'j.mercer@mail.com',
+//     firstName: "Jacob",
+//     lastName: "Mercer",
+//     email: "j.mercer@mail.com",
 //     friendCount: 40,
-//   }),
+//   })
 // );
 
 // console.log(
