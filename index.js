@@ -451,28 +451,110 @@
 // ## Коллекция объектов для всех примеров с автомобилями
 
 // ```js
-// const cars = [
-//   { make: 'Honda', model: 'CR-V', type: 'suv', amount: 14, price: 24045, onSale: true },
-//   { make: 'Honda', model: 'Accord', type: 'sedan', amount: 2, price: 22455, onSale: true },
-//   { make: 'Mazda', model: 'Mazda 6', type: 'sedan', amount: 8, price: 24195, onSale: false },
-//   { make: 'Mazda', model: 'CX-9', type: 'suv', amount: 7, price: 31520, onSale: true },
-//   { make: 'Toyota', model: '4Runner', type: 'suv', amount: 19, price: 34210, onSale: false },
-//   { make: 'Toyota', model: 'Sequoia', type: 'suv', amount: 16, price: 45560, onSale: false },
-//   { make: 'Toyota', model: 'Tacoma', type: 'truck', amount: 4, price: 24320, onSale: true },
-//   { make: 'Ford', model: 'F-150', type: 'truck', amount: 11, price: 27110, onSale: true },
-//   { make: 'Ford', model: 'Fusion', type: 'sedan', amount: 13, price: 22120, onSale: true },
-//   { make: 'Ford', model: 'Explorer', type: 'suv', amount: 6, price: 31660, onSale: false }
-// ];
+const cars = [
+  {
+    make: "Honda",
+    model: "CR-V",
+    type: "suv",
+    amount: 14,
+    price: 24045,
+    onSale: true,
+  },
+  {
+    make: "Honda",
+    model: "Accord",
+    type: "sedan",
+    amount: 2,
+    price: 22455,
+    onSale: true,
+  },
+  {
+    make: "Mazda",
+    model: "Mazda 6",
+    type: "sedan",
+    amount: 8,
+    price: 24195,
+    onSale: false,
+  },
+  {
+    make: "Mazda",
+    model: "CX-9",
+    type: "suv",
+    amount: 7,
+    price: 31520,
+    onSale: true,
+  },
+  {
+    make: "Toyota",
+    model: "4Runner",
+    type: "suv",
+    amount: 19,
+    price: 34210,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Sequoia",
+    type: "suv",
+    amount: 16,
+    price: 45560,
+    onSale: false,
+  },
+  {
+    make: "Toyota",
+    model: "Tacoma",
+    type: "truck",
+    amount: 4,
+    price: 24320,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "F-150",
+    type: "truck",
+    amount: 11,
+    price: 27110,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Fusion",
+    type: "sedan",
+    amount: 13,
+    price: 22120,
+    onSale: true,
+  },
+  {
+    make: "Ford",
+    model: "Explorer",
+    type: "suv",
+    amount: 6,
+    price: 31660,
+    onSale: false,
+  },
+];
 // ```
 
 // ## Example 1 - Метод map
+
+// array.method((element, index, array) => {
+//     // some logic
+// })
 
 // Пусть функция `getModels` возвращает массив моделей (поле model) всех
 // автомобилей.
 
 // ```js
-// const getModels = cars => {};
+// const getModels = (cars) =>
+//   cars.map((car) => {
+//     return car.model;
+//   });
 
+// const getModels = (cars) => cars.map((car) => car.model);
+
+// const getModels = (cars) => cars.map(({ model }) => model);
+
+// console.log(cars);
 // console.table(getModels(cars));
 // ```
 
@@ -482,7 +564,17 @@
 // значением свойства `price` в зависимости от переданной скидки.
 
 // ```js
-// const makeCarsWithDiscount = (cars, discount) => {};
+// const makeCarsWithDiscount = (cars, discount) => {
+//   return cars.map((car) => {
+//     return { ...car, price: (1 - discount) * car.price };
+//   });
+// };
+
+// const makeCarsWithDiscount = (cars, discount) =>
+//   cars.map((car) => ({ ...car, price: (1 - discount) * car.price }));
+
+// const makeCarsWithDiscount = (cars, discount) =>
+//   cars.map((car) => ({ ...car, price: (1 - discount) * car.price }));
 
 // console.table(makeCarsWithDiscount(cars, 0.2));
 // console.table(makeCarsWithDiscount(cars, 0.4));
@@ -494,7 +586,11 @@
 // чем значение параметра `threshold`.
 
 // ```js
-// const filterByPrice = (cars, threshold) => {};
+// const filterByPrice = (cars, threshold) =>
+//   cars.filter((car) => car.price < threshold);
+
+// const filterByPrice = (cars, threshold) =>
+//   cars.filter(({ price }) => price < threshold);
 
 // console.table(filterByPrice(cars, 30000));
 // console.table(filterByPrice(cars, 25000));
@@ -506,7 +602,10 @@
 // onSale которых true.
 
 // ```js
-// const getCarsWithDiscount = cars => {};
+// const getCarsWithDiscount = (cars) =>
+//   cars.filter(({ onSale }) => onSale === true); // true
+
+// const getCarsWithDiscount = (cars) => cars.filter(({ onSale }) => onSale);
 
 // console.table(getCarsWithDiscount(cars));
 // ```
@@ -526,10 +625,10 @@
 // ## Example 6 - Метод find
 
 // ```js
-// const getCarByModel = (cars, model) => {};
+// const getCarByModel = (cars, model) => cars.find((car) => car.model === model);
 
-// console.log(getCarByModel(cars, 'F-150'));
-// console.log(getCarByModel(cars, 'CX-9'));
+// console.log(getCarByModel(cars, "F-150"));
+// console.log(getCarByModel(cars, "CX-9"));
 // ```
 
 // ## Example 7 - Метод sort
@@ -538,7 +637,14 @@
 // отсортированный по возврастанию значения свойства `amount`.
 
 // ```js
-// const sortByAscendingAmount = cars => {};
+// const sortByAscendingAmount = (cars) => {
+//   const copyCars = [...cars];
+//   //   return copyCars.sort((a, b) => (a.amount < b.amount ? -356 : 12)); // 14 < 2 // false => 1
+//   return copyCars.sort((a, b) => b.amount - a.amount); // 14 - 2 // 12 => 1
+
+//   // a - 0 => 1
+//   // b - 1=> 0
+// };
 
 // console.table(sortByAscendingAmount(cars));
 // ```
@@ -549,7 +655,13 @@
 // отсортированный по убыванию значения свойства `price`.
 
 // ```js
-// const sortByDescendingPrice = cars => {};
+// const sortByDescendingPrice = (cars) => {
+//   const carsCopy = [...cars];
+//   return carsCopy.sort((a, b) => b.price - a.price);
+// };
+
+// const sortByDescendingPrice = (cars) =>
+//   [...cars].sort((a, b) => b.price - a.price);
 
 // console.table(sortByDescendingPrice(cars));
 // ```
@@ -561,10 +673,18 @@
 // значения параметра `order`.
 
 // ```js
-// const sortByModel = (cars, order) => {};
+// const sortByModel = (cars, order) => {
+//   if (order === "asc") {
+//     return [...cars].sort((a, b) => a.model.localeCompare(b.model));
+//   }
 
-// console.table(sortByModel(cars, 'asc'));
-// console.table(sortByModel(cars, 'desc'));
+//   if (order === "desc") {
+//     return [...cars].sort((a, b) => b.model.localeCompare(a.model));
+//   }
+// };
+
+// console.table(sortByModel(cars, "asc"));
+// console.table(sortByModel(cars, "desc"));
 // ```
 
 // ## Example 10 - Метод reduce
@@ -573,7 +693,36 @@
 // свойств `amount`).
 
 // ```js
-// const getTotalAmount = cars => {};
+// const getTotalAmount = (cars) => {
+//   let acc = 0;
+//   for (let car of cars) {
+//     acc += car.amount;
+//   }
+//   return acc;
+// };
+
+console.log(cars);
+
+// const getTotalAmount = (cars) =>
+//   cars.reduce((acc, car) => (acc += car.amount), 0);
+
+// const reduceValue = (acc, car) => (acc += car.amount + car.price);
+// acc = 0
+// 2*6 = 12
+// 0 + 12
+
+// acc = acc + car.amount + car.price
+
+// acc = 12
+// 3 * 5 = 15
+// acc = 15 + 12 = 27
+
+// const getTotalAmount = (cars) =>
+//   cars.reduce((acc, car) => (acc += car.amount * car.price), 0);
+
+// const getTotalAmount = (cars) => cars.reduce(reduceValue, 0);
+
+// cars.reduce(arg1, arg2);
 
 // console.log(getTotalAmount(cars));
 // ```
@@ -584,9 +733,15 @@
 // только тех, которые сейчас на распродаже.
 
 // ```js
-// const getModelsOnSale = cars => {};
+const getModelsOnSale = (cars) =>
+  cars
+    .filter(({ onSale }) => onSale)
+    .map(({ model }) => model)
+    .sort((a, b) => a.localeCompare(b))
+    .find((model) => model === "Fusion")
+    .toUpperCase();
 
-// console.table(getModelsOnSale(cars));
+console.table(getModelsOnSale(cars));
 // ```
 
 // ## Example 12 - Цепочки методов
