@@ -335,6 +335,143 @@
 // [математика, фізика, інформатика]
 ////////////////////////////////////////////////////////////////////////////////
 
+// class User {
+//   constructor(name, age) {}
+// }
+
+// const user = new User("Bob", 12);
+
+// class Admin {
+//   constructor({ name, age }) {}
+// }
+
+// const admin = new Admin({ name: "John", age: 13 });
+
+// class User {
+//   // Необязательное объявление публичных свойств
+//   name;
+//   // Обязательное объявление приватных свойств
+//   #email;
+
+//   constructor({ name, email }) {
+//     this.name = name;
+//     this.#email = email;
+//   }
+
+//   //   getEmail() {
+//   //     return this.#email;
+//   //   }
+
+//   get email() {
+//     return this.#email;
+//   }
+
+//   set email(value) {
+//     this.#email = value;
+//   }
+
+//   changeEmail(newEmail) {
+//     this.#email = newEmail;
+//   }
+// }
+
+// const mango = new User({
+//   name: "Манго",
+//   email: "mango@mail.com",
+// });
+
+// console.log(mango);
+// console.log(mango.name);
+// console.log(mango.email);
+// mango.email = "user@gmail.com";
+// console.log(mango.email);
+// console.log(mango.#email);
+// mango.changeEmail("mango@supermail.com");
+// console.log(mango.getEmail()); // mango@supermail.com
+// console.log(mango.#email);
+
+// class User {
+//   #percent;
+
+//   constructor(percent) {
+//     this.#percent = percent;
+//   }
+
+//   get percent() {
+//     return this.#percent;
+//   }
+// }
+
+// class Admin extends User {
+//   #percent;
+//   constructor(percent) {
+//     super();
+//     this.role = "Admin";
+//   }
+
+//   set percent(value) {
+//     this.#percent = value;
+//   }
+// }
+
+// const user = new User(20);
+// console.log(user);
+
+// const admin = new Admin(30);
+// admin.percent = 40;
+// console.log(admin);
+
+// function User(name, age) {
+//   // this - {}
+//   this.name = name;
+//   this.age = age;
+//   // return this
+// }
+
+// User.prototype.getName = function () {
+//   return this.name;
+// };
+
+// class User {
+//   constructor(name, age) {
+//     // this = {}
+//     this.name = name;
+//     this.age = age;
+//     // this.getName = function () {
+//     //   return this.name;
+//     // };
+//     // return this
+//   }
+//   getName() {
+//     return this.name;
+//   }
+
+//   static showConsole() {
+//     console.log("aaaaaa");
+//   }
+
+//   getInfo() {
+//     this.showConsole();
+//   }
+// }
+
+// class Student extends User {
+//   constructor(name, age, group) {
+//     super(name, age); // constructor з класа User
+//     this.group = group;
+//   }
+// }
+
+// const user = new User("Bob", 12);
+// const user2 = new User("John", 22);
+// user.getInfo();
+// User.showConsole();
+// const student = new Student("Jack", 24, "FS47");
+
+// console.log(user);
+// console.log(user2);
+// console.log(student);
+
 // # Модуль 5. Занятие 10. Прототипы и классы
 
 // ## Example 1 - Блоггер
@@ -354,22 +491,54 @@
 // Добавь метод `updatePostCount(value)`, который в параметре `value` принимает
 // количество постов которые нужно добавить пользователю.
 
-// ```js
+// class User {
+//   constructor({ email, age, numberOfPosts, topics }) {
+//     // this = {}
+//     this.email = email;
+//     this.age = age;
+//     this.numberOfPosts = numberOfPosts;
+//     this.topics = topics;
+//   }
+
+//   // {
+//   //     emai, age, number, topics
+//   // }
+
+//   getInfo() {
+//     return `User ${this.email} is ${this.age} years old and has ${this.numberOfPosts} posts`;
+//   }
+
+//   updatePostCount(value) {
+//     this.numberOfPosts += value;
+//   }
+
+//   // {
+//   //     emai, age, number, topics
+//   // prototype: {getInfo, update}
+//   // }
+
+//   // return this
+// }
+
+// // ```js
 // const mango = new User({
-//   name: 'mango@mail.com',
+//   email: "mango@mail.com",
 //   age: 24,
 //   numberOfPosts: 20,
-//   topics: ['tech', 'cooking'],
+//   topics: ["tech", "cooking"],
 // });
+
+// console.log(mango);
+
 // console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 20 posts
 // mango.updatePostCount(5);
 // console.log(mango.getInfo()); // User mango@mail.com is 24 years old and has 25 posts
 
 // const poly = new User({
-//   name: 'poly@mail.com',
+//   email: "poly@mail.com",
 //   age: 19,
 //   numberOfPosts: 17,
-//   topics: ['sports', 'gaming', 'health'],
+//   topics: ["sports", "gaming", "health"],
 // });
 // console.log(poly.getInfo()); // User poly@mail.com is 19 years old and has 17 posts
 // poly.updatePostCount(4);
@@ -388,16 +557,38 @@
 // - `addItem(item)` - получает новый товар и добавляет его к текущим.
 // - `removeItem(item)` - получает товар и, если он есть, удаляет его из текущих.
 
-// ```js
-// const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+// class Storage {
+//   constructor(items) {
+//     this.items = items;
+//   }
+
+//   getItems() {
+//     return this.items;
+//   }
+
+//   addItem(item) {
+//     this.items.push(item);
+//   }
+
+//   removeItem(item) {
+//     if (!this.items.includes(item)) {
+//       return "Товар відсутній на складі";
+//     }
+
+//     this.items = this.items.filter((el) => el !== item);
+//   }
+// }
+
+// // ```js
+// const storage = new Storage(["🍎", "🍋", "🍇", "🍑"]);
 
 // const items = storage.getItems();
 // console.table(items); // [ '🍎', '🍋', '🍇', '🍑' ]
 
-// storage.addItem('🍌');
+// storage.addItem("🍌");
 // console.table(storage.items); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
 
-// storage.removeItem('🍋');
+// storage.removeItem("🍋");
 // console.table(storage.items); // [ '🍎', '🍇', '🍑', '🍌' ]
 // ```
 
@@ -407,10 +598,35 @@
 // Объяви приватные свойства `#login` и `#email`, доступ к которым сделай через
 // геттер и сеттер `login` и `email`.
 
-// ```js
+// class User {
+//   #login;
+//   #email;
+//   constructor({ email, login }) {
+//     this.#email = email;
+//     this.#login = login;
+//   }
+
+//   get email() {
+//     return this.#email;
+//   }
+
+//   set email(value) {
+//     this.#email = value;
+//   }
+
+//   get login() {
+//     return this.#login;
+//   }
+
+//   set login(value) {
+//     this.#login = value;
+//   }
+// }
+
+// // ```js
 // const mango = new User({
-//   login: 'Mango',
-//   email: 'mango@dog.woof',
+//   login: "Mango",
+//   email: "mango@dog.woof",
 // });
 
 // console.log(mango.login); // Mango
@@ -433,6 +649,44 @@
 // Заметка это объект со свойствами `text` и `priority`. Добавь классу статическое
 // свойство `Priority`, в котором будет храниться объект с приоритетами.
 
+// class Notes {
+//   constructor(items) {
+//     this.items = items;
+//   }
+
+//   static Priority = { LOW: "low", NORMAL: "normal", HIGH: "high" };
+
+//   addNote(note) {
+//     this.items.push(note);
+//   }
+
+//   removeNote(text) {
+//     this.items = this.items.filter((item) => item.text !== text);
+//   }
+
+//   updatePriority(newText, newPriority) {
+//     this.items = this.items.map((item) =>
+//       item.text === newText ? { ...item, priority: newPriority } : item
+//     );
+// }
+// item.text === newText
+// true
+// {...item, priority: newPriority }
+
+// const user = {
+//   name: "Bob",
+//   age: 15,
+// };
+
+// const user2 = {
+//   ...user,
+//   age: 45,
+// };
+
+// {name: 'Bob', age: 45}
+
+// }
+
 // ```js
 // {
 //   LOW: 'low',
@@ -447,19 +701,19 @@
 // ```js
 // const myNotes = new Notes([]);
 
-// myNotes.addNote({ text: 'Моя первая заметка', priority: Notes.Priority.LOW });
+// myNotes.addNote({ text: "Моя первая заметка", priority: Notes.Priority.LOW });
 // console.log(myNotes.items);
 
 // myNotes.addNote({
-//   text: 'Моя вторая заметка',
+//   text: "Моя вторая заметка",
 //   priority: Notes.Priority.NORMAL,
 // });
 // console.log(myNotes.items);
 
-// myNotes.removeNote('Моя первая заметка');
+// myNotes.removeNote("Моя первая заметка");
 // console.log(myNotes.items);
 
-// myNotes.updateNote('Моя вторая заметка', Notes.Priority.HIGH);
+// myNotes.updatePriority("Моя вторая заметка", Notes.Priority.HIGH);
 // console.log(myNotes.items);
 // ```
 
@@ -484,3 +738,34 @@
 // console.log(secondToggle.on);
 // console.groupEnd('secondToggle');
 // ```
+
+// const user = {
+//   name: "Bob",
+//   age: 23,
+//   getInfo() {
+//     return `${this.name} and ${this.age}`;
+//   },
+//   prototype: {
+//     ChangeEmail() {
+//       this.email;
+//     },
+//   },
+// };
+
+// user.prototype.ChangeEmail
+
+// console.log(user);
+
+// const user2 = {
+//   name: "Jack",
+//   age: 35,
+// };
+
+// const getInfoForUser2 = user.getInfo.bind(user2);
+
+// console.log(getInfoForUser2);
+
+// console.log(user.getInfo.call(user2));
+// console.log(getInfoForUser2());
+
+// console.log(user.getInfo());
