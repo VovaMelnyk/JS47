@@ -122,8 +122,11 @@ class Storage {
   removeItem(item) {
     if (!this.items.includes(item)) return "товар відсутній на складі";
     // this.items = this.items.filter((items) => items !== item);
-    const index = this.items.indexOf(item);
-    this.items.splice(index, 1);
+    // const index = this.items.indexOf(item);
+    // this.items.splice(index, 1);
+    this.items = this.items.filter(
+      (items, index, array) => array.indexOf(items) === index
+    );
   }
 }
 
