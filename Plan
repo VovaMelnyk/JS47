@@ -3,3 +3,15 @@ atr
 styles
 create el with string
 classList
+
+
+addEvent
+removeEvent
+event.target
+event.currentTarget
+keydown
+keyup
+keypress
+sumbit
+change
+input
