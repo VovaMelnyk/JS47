@@ -30,6 +30,30 @@
   background-color: yellowgreen;
 }
 
+.section {
+  margin-bottom: 40px;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.gray {
+  background-color: gray;
+}
+
+.black {
+  background-color: black;
+}
+
 /* .list__item {
     transition: 1s;
 } */
